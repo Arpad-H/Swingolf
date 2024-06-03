@@ -12,10 +12,19 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.swingolf.R;
+import com.example.swingolf.dataModel.AppDatabase;
+import com.example.swingolf.dataModel.Player;
 import com.example.swingolf.databinding.FragmentPlayersBinding;
 import com.example.swingolf.ui.StartGame.StartGameViewModel;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class PlayersFragment extends Fragment {
+    @Inject
+    AppDatabase database;
     private FragmentPlayersBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -43,5 +52,13 @@ public class PlayersFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        for (int i = 0 ; i <1000 ; i++) {
+            Log.d("PlayersFragment", "onResume");
+        }
+
     }
 }

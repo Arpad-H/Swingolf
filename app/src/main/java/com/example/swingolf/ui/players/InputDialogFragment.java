@@ -11,10 +11,21 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.room.Room;
 
 import com.example.swingolf.R;
+import com.example.swingolf.dataModel.AppDatabase;
+import com.example.swingolf.dataModel.Player;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class InputDialogFragment extends DialogFragment {
+
+    @Inject
+    AppDatabase database;
 
     private EditText editTextName;
     private Button buttonSubmit;
@@ -27,10 +38,17 @@ public class InputDialogFragment extends DialogFragment {
         editTextName = view.findViewById(R.id.editTextName);
         buttonSubmit = view.findViewById(R.id.buttonSubmitNewPlayer);
 
+
+
         buttonSubmit.setOnClickListener(v -> {
             String name = editTextName.getText().toString();
+            if (database == null) {
+                Log.d("InputDialogFragment", "database is null");
+            }else{
+                database.playerInDao().insert(new Player(name));
+                dismiss();
+            }
 
-            dismiss();
         });
 
         return view;
