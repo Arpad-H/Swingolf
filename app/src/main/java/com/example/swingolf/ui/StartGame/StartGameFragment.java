@@ -1,4 +1,4 @@
-package com.example.swingolf.ui.slideshow;
+package com.example.swingolf.ui.StartGame;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.swingolf.databinding.FragmentSlideshowBinding;
+import com.example.swingolf.databinding.FragmentStartGameBinding;
 
-public class SlideshowFragment extends Fragment {
+public class StartGameFragment extends Fragment {
 
-    private FragmentSlideshowBinding binding;
+    private FragmentStartGameBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        SlideshowViewModel slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+        StartGameViewModel homeViewModel =
+                new ViewModelProvider(this).get(StartGameViewModel.class);
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentStartGameBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textHome;
+        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

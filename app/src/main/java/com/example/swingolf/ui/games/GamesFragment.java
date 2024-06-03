@@ -1,4 +1,4 @@
-package com.example.swingolf.ui.gallery;
+package com.example.swingolf.ui.games;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,18 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.swingolf.databinding.FragmentGalleryBinding;
+import com.example.swingolf.databinding.FragmentGamesBinding;
 
-public class GalleryFragment extends Fragment {
+public class GamesFragment extends Fragment {
 
-    private FragmentGalleryBinding binding;
+    private FragmentGamesBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        GalleryViewModel galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+        GamesViewModel galleryViewModel =
+                new ViewModelProvider(this).get(GamesViewModel.class);
 
-        binding = FragmentGalleryBinding.inflate(inflater, container, false);
+        binding = FragmentGamesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textGallery;

@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_start_game">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.swingolf.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_start_game"
+        android:name="com.example.swingolf.ui.StartGame.StartGameFragment"
+        android:label="@string/start_game"
+        tools:layout="@layout/fragment_start_game" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.swingolf.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_games"
+        android:name="com.example.swingolf.ui.games.GamesFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_games" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.swingolf.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_players"
+        android:name="com.example.swingolf.ui.players.PlayersFragment"
+        android:label="@string/players"
+        tools:layout="@layout/fragment_players" />
 </navigation>
