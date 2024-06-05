@@ -49,6 +49,7 @@ public class InputDialogFragment extends DialogFragment {
                 Log.d("InputDialogFragment", "database is null");
             } else {
                 database.playerInDao().insert(new Player(name));
+                getParentFragmentManager().setFragmentResult("playerAdded", new Bundle());
                 dismiss();
             }
 

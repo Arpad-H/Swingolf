@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/nav_players"
-        android:name="com.example.swingolf.ui.players.PlayersFragment"
+        android:name="com.example.swingolf.ui.players.PlayersListFragment"
         android:label="@string/players"
-        tools:layout="@layout/fragment_players" />
+        tools:layout="@layout/fragment_players_list" />
 </navigation>
