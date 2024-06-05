@@ -16,14 +16,22 @@ import dagger.hilt.InstallIn;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.components.SingletonComponent;
 
-@Module
-@InstallIn(SingletonComponent.class)
-public class DatabaseModule {
+//@Module
+//@InstallIn(SingletonComponent.class)
+public  class DatabaseModule {
+static AppDatabase appDatabase;
+   // @Provides
+  //  @Singleton
+   private static AppDatabase instance;
 
-    @Provides
-    @Singleton
-    public AppDatabase provideDatabase(@ApplicationContext Context context) {
-
-        return Room.databaseBuilder(context, AppDatabase.class, "app-database").build();
+    public static synchronized AppDatabase getInstance(Context context) {
+        if (instance == null) {
+            instance = Room.databaseBuilder(context.getApplicationContext(),
+                            AppDatabase.class, "app-database")
+                    .allowMainThreadQueries()
+                    .build();
+        }
+        return instance;
     }
+
 }
