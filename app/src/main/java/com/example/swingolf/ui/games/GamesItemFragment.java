@@ -52,13 +52,19 @@ public class GamesItemFragment extends Fragment {
         binding = FragmentGamesItemBinding.inflate(inflater, container, false);
         binding.gameID.setText(String.format("%d", game.id));
         binding.gamePlace.setText(game.courtName);
-        String winnername = "niemand";
+        String winner_name = "Nobody";
         if (game.winner != Integer.MAX_VALUE) {
             Player winner = database.playerInDao().getPlayerById(game.winner);
-            winnername = winner.name;
+            winner_name = winner.name;
         }
-        binding.gameWinner.setText(winnername);
+        binding.gameWinner.setText(winner_name);
         binding.gameDate.setText(game.date);
+        binding.gameDelete.setOnClickListener(this::deleteGame);
         return binding.getRoot();
     }
+
+    private void deleteGame(View view) {
+        database.gameInDao().deleteGameById(game.id);
+    }
+
 }
