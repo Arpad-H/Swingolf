@@ -2,7 +2,6 @@ package com.example.swingolf.util;
 
 import androidx.room.TypeConverter;
 
-import com.example.swingolf.dataModel.Game;
 import com.example.swingolf.dataModel.Player;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

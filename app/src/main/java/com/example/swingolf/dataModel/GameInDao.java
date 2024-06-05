@@ -30,5 +30,9 @@ public interface GameInDao {
     @Query("Delete FROM Game WHERE id = :id")
     void deleteGameById(int id);
 
+    @Query("SELECT winner FROM Game WHERE id = :id")
+    int getWinner(int id);
 
+    @Query("UPDATE Game SET winner = :winner WHERE id = :id")
+    void setWinner(int id, int winner);
 }

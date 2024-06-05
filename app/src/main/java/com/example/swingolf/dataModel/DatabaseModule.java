@@ -1,24 +1,12 @@
 package com.example.swingolf.dataModel;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.room.Room;
 
-
-
-
-import javax.inject.Singleton;
-
-import dagger.Module;
-import dagger.Provides;
-import dagger.hilt.InstallIn;
-import dagger.hilt.android.qualifiers.ApplicationContext;
-import dagger.hilt.components.SingletonComponent;
-
 //@Module
 //@InstallIn(SingletonComponent.class)
-public  class DatabaseModule {
+public class DatabaseModule {
 static AppDatabase appDatabase;
    // @Provides
   //  @Singleton
@@ -28,10 +16,10 @@ static AppDatabase appDatabase;
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class, "app-database")
+                    .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
                     .build();
         }
         return instance;
     }
-
 }
