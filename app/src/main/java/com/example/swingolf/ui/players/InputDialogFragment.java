@@ -5,56 +5,57 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.room.Database;
-import androidx.room.Room;
 
-import com.example.swingolf.R;
 import com.example.swingolf.dataModel.AppDatabase;
 import com.example.swingolf.dataModel.DatabaseModule;
+import com.example.swingolf.databinding.FragmentAddPlayerBinding;
 import com.example.swingolf.dataModel.Player;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
-import dagger.hilt.android.qualifiers.ApplicationContext;
 
 @AndroidEntryPoint
 public class InputDialogFragment extends DialogFragment {
 
-    //@Inject
+
     AppDatabase database;
 
-    private EditText editTextName;
-    private Button buttonSubmit;
+    private FragmentAddPlayerBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add_player, container, false);
-
-        editTextName = view.findViewById(R.id.editTextName);
-        buttonSubmit = view.findViewById(R.id.buttonSubmitNewPlayer);
-
+        binding = FragmentAddPlayerBinding.inflate(inflater, container, false);
         database = DatabaseModule.getInstance(getContext());
+        setupSubmitButton();
+        return binding.getRoot();
+    }
 
-        buttonSubmit.setOnClickListener(v -> {
-            String name = editTextName.getText().toString();
-            if (database == null) {
-                Log.d("InputDialogFragment", "database is null");
-            } else {
-                database.playerInDao().insert(new Player(name));
-                getParentFragmentManager().setFragmentResult("playerAdded", new Bundle());
-                dismiss();
-            }
-
+    private void setupSubmitButton() {
+        binding.buttonSubmitNewPlayer.setOnClickListener(v -> {
+            submitPlayer();
         });
+    }
 
-        return view;
+    private void submitPlayer() {
+        String name = binding.editTextName.getText().toString().trim();
+        if (name.isEmpty()) {
+            Log.e("InputDialogFragment", "Player name is empty");
+            return;
+        }
+
+        try {
+            database.playerInDao().insert(new Player(name));
+            Bundle result = new Bundle();
+            getParentFragmentManager().setFragmentResult("playerAdded", result);
+            dismiss();
+        } catch (Exception e) {
+            Log.e("InputDialogFragment", "Failed to insert player", e);
+        }
     }
 }
