@@ -1,10 +1,12 @@
 package com.example.swingolf.ui.StartGame;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -15,7 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.swingolf.dataModel.AppDatabase;
 import com.example.swingolf.dataModel.DatabaseModule;
 import com.example.swingolf.databinding.FragmentStartGameBinding;
-import com.example.swingolf.ui.players.InputDialogFragment;
+import com.example.swingolf.ui.games.ScorecardActivity;
 
 public class StartGameFragment extends Fragment {
     AppDatabase database;
@@ -42,10 +44,18 @@ public class StartGameFragment extends Fragment {
             Log.d("StartGameFragment", "New Game started, updating Screen");
             newGameStarted();
         });
+//        final TextView textView = binding.textHome;
+//        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+//
+//
+//
         return root;
     }
 
     private void newGameStarted() {
+
+                Intent intent = new Intent(getActivity(), ScorecardActivity.class);
+                startActivity(intent);
     }
 
     @Override
